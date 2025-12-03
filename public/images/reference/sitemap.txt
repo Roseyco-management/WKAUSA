@@ -1,0 +1,95 @@
+WKA USA Website Navigation Structure
+Source: https://wkausa.com
+=====================================
+
+TOP-LEVEL NAVIGATION & SUBPAGES
+-------------------------------
+
+1. HOME
+   URL: /
+
+2. ABOUT US
+   URL: /formation_WKA.php
+   Subpages:
+   - About WKA USA
+   - WKA History
+   - Formation of the WKA
+   - Notable Early World Title Fights
+   - Growth of the WKA
+   - The WKA Today
+   - WKA Amateur World Championships
+   - The WKA in North America Today
+   - WKA USA Representative: Brian Crenshaw
+   - Some of the WKA's Most Notable Early Champions & Matches
+
+3. SPORTS
+   URL: /sports.php
+   Subpages (sections within page):
+   - WKA Divisions and Styles:
+     - Light Contact
+     - Full Contact
+     - Kickboxing
+     - Muay Thai
+     - MMA
+     - Submission Grappling
+
+4. ATHLETES
+   URL: /athletes.php
+   Subpages:
+   - Athletes (general)
+   - Fight of the Month
+
+5. NEWS
+   URL: /news.php (implied)
+   Subpages:
+   - Recent News
+   - WKA Nationals / North Americans / Worlds
+   - Archived News
+   - News Blast
+
+6. EVENTS
+   URL: /upcoming_events.php
+   Subpages:
+   - Upcoming Events
+   - Results
+   - Sanctioning
+   - Suspensions
+
+7. REGISTRATION
+   URL: /old/membership.html
+   Subpages:
+   - Registration Forms:
+     - Fighter
+     - Promoter
+     - Cornerman
+     - Gym
+     - Official
+   - Photo Gallery
+   - Videos
+
+8. SPONSORSHIP
+   URL: /sponsorship.php
+   Subpages:
+   - Description of options for businesses
+
+9. TRAINING
+   URL: /training.php
+
+10. REGULATIONS
+    URL: /old/pdf/2016%20WKA%20USA%20Rules%20and%20Regulations%204-18-2016.pdf
+    Subpages:
+    - WKA Mat Rule Book
+    - Amateur Rules and Regulations
+    - Professional Rules and Regulations
+
+11. STORE
+    URL: /store.php (implied)
+    Subpages:
+    - Products
+    - Merchandise
+
+12. LINKS
+    URL: /links.php (implied)
+
+13. CONTACT US
+    URL: /contact.php
