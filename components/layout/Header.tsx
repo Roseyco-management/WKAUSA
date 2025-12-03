@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, User, Shield, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigation = [
@@ -38,6 +38,7 @@ const navigation = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
@@ -110,6 +111,40 @@ export function Header() {
                 )}
               </div>
             ))}
+
+            {/* Login Button with Dropdown */}
+            <div
+              className="relative ml-4 pl-4 border-l border-gray-200"
+              onMouseEnter={() => setLoginDropdownOpen(true)}
+              onMouseLeave={() => setLoginDropdownOpen(false)}
+            >
+              <button
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-wka-red hover:bg-red-700 rounded-lg transition-colors"
+              >
+                <LogIn className="h-4 w-4" />
+                Login
+                <ChevronDown className="h-3 w-3" />
+              </button>
+
+              {loginDropdownOpen && (
+                <div className="absolute right-0 top-full z-10 mt-1 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5">
+                  <Link
+                    href="/client/login"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-wka-red"
+                  >
+                    <User className="h-4 w-4" />
+                    Fighter Login
+                  </Link>
+                  <Link
+                    href="/admin/login"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-wka-red"
+                  >
+                    <Shield className="h-4 w-4" />
+                    Admin Login
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -142,6 +177,27 @@ export function Header() {
                   )}
                 </div>
               ))}
+
+              {/* Mobile Login Section */}
+              <div className="border-t border-gray-200 pt-4 mt-4 px-3">
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2 px-3">Login</p>
+                <Link
+                  href="/client/login"
+                  className="flex items-center gap-2 px-3 py-2 text-base font-medium text-gray-700 hover:text-wka-red"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <User className="h-5 w-5" />
+                  Fighter Login
+                </Link>
+                <Link
+                  href="/admin/login"
+                  className="flex items-center gap-2 px-3 py-2 text-base font-medium text-gray-700 hover:text-wka-red"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Shield className="h-5 w-5" />
+                  Admin Login
+                </Link>
+              </div>
             </div>
           </div>
         )}

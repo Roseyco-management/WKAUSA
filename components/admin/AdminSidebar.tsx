@@ -110,7 +110,7 @@ export default function AdminSidebar() {
         <div className="flex items-center justify-center h-20 border-b border-gray-200">
           <Link href="/admin">
             <Image
-              src="/images/wka-logo.png"
+              src="/logos/wka-logo.png"
               alt="WKA USA"
               width={120}
               height={40}
