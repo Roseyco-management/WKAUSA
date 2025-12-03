@@ -36,7 +36,7 @@ export default function ClientLogin() {
         {/* Logo */}
         <div className="flex justify-center">
           <Image
-            src="/images/wka-logo.png"
+            src="/logos/wka-logo.png"
             alt="WKA USA"
             width={150}
             height={60}

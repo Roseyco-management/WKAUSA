@@ -127,21 +127,23 @@ export function Header() {
               </button>
 
               {loginDropdownOpen && (
-                <div className="absolute right-0 top-full z-10 mt-1 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5">
-                  <Link
-                    href="/client/login"
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-wka-red"
-                  >
-                    <User className="h-4 w-4" />
-                    Fighter Login
-                  </Link>
-                  <Link
-                    href="/admin/login"
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-wka-red"
-                  >
-                    <Shield className="h-4 w-4" />
-                    Admin Login
-                  </Link>
+                <div className="absolute right-0 top-full z-10 pt-2 w-48">
+                  <div className="rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5">
+                    <Link
+                      href="/client/login"
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-wka-red"
+                    >
+                      <User className="h-4 w-4" />
+                      Fighter Login
+                    </Link>
+                    <Link
+                      href="/admin/login"
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-wka-red"
+                    >
+                      <Shield className="h-4 w-4" />
+                      Admin Login
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
