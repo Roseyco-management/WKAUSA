@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { name: "Home", href: "/" },
   {
-    name: "About Us",
+    name: "About",
     href: "/about",
     children: [
       { name: "About WKA USA", href: "/about" },
@@ -29,15 +29,20 @@ const navigation = [
   },
   { name: "Athletes", href: "/rankings" },
   { name: "Championships", href: "/championships" },
-  { name: "Suspensions", href: "/suspensions" },
   { name: "Store", href: "/shop" },
   { name: "Contact", href: "/contact" },
+];
+
+// Secondary links shown only on desktop or in mobile "More" section
+const secondaryNav = [
+  { name: "Suspensions", href: "/suspensions" },
   { name: "Links", href: "/links" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
 
   return (
@@ -75,28 +80,28 @@ export function Header() {
 
           {/* Desktop navigation */}
           <div className="hidden lg:flex lg:items-center lg:gap-x-1">
-            {navigation.map((item) => (
+            {[...navigation, ...secondaryNav].map((item) => (
               <div
                 key={item.name}
                 className="relative"
-                onMouseEnter={() => item.children && setOpenDropdown(item.name)}
+                onMouseEnter={() => 'children' in item && item.children && setOpenDropdown(item.name)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <Link
                   href={item.href}
                   className={cn(
                     "px-3 py-2 text-sm font-medium text-gray-700 hover:text-wka-red transition-colors flex items-center gap-1",
-                    item.children && "pr-1"
+                    'children' in item && item.children && "pr-1"
                   )}
                 >
                   {item.name}
-                  {item.children && (
+                  {'children' in item && item.children && (
                     <ChevronDown className="h-3 w-3" />
                   )}
                 </Link>
 
                 {/* Dropdown menu */}
-                {item.children && openDropdown === item.name && (
+                {'children' in item && item.children && openDropdown === item.name && (
                   <div className="absolute left-0 top-full z-10 mt-0 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5">
                     {item.children.map((child) => (
                       <Link
@@ -153,52 +158,86 @@ export function Header() {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200">
-            <div className="space-y-1 pb-4 pt-2">
-              {navigation.map((item) => (
-                <div key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-wka-red"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.children && (
-                    <div className="ml-4 space-y-1">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.name}
-                          href={child.href}
-                          className="block px-3 py-2 text-sm text-gray-500 hover:text-wka-red"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              {/* Mobile Login Section */}
-              <div className="border-t border-gray-200 pt-4 mt-4 px-3">
-                <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2 px-3">Login</p>
+            <div className="pb-4 pt-3">
+              {/* Prominent Login Button */}
+              <div className="px-4 pb-4 mb-3 border-b border-gray-100">
                 <Link
                   href="/client/login"
-                  className="flex items-center gap-2 px-3 py-2 text-base font-medium text-gray-700 hover:text-wka-red"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-base font-medium text-white bg-wka-red hover:bg-red-700 rounded-lg transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <User className="h-5 w-5" />
+                  <LogIn className="h-5 w-5" />
                   Fighter Login
                 </Link>
-                <Link
-                  href="/admin/login"
-                  className="flex items-center gap-2 px-3 py-2 text-base font-medium text-gray-700 hover:text-wka-red"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Shield className="h-5 w-5" />
-                  Admin Login
-                </Link>
+              </div>
+
+              {/* Main Navigation - Simplified */}
+              <div className="space-y-1 px-2">
+                {navigation.map((item) => (
+                  <div key={item.name}>
+                    {item.children ? (
+                      <>
+                        <button
+                          onClick={() => setMobileDropdown(mobileDropdown === item.name ? null : item.name)}
+                          className="flex items-center justify-between w-full px-3 py-2.5 text-base font-medium text-gray-700 hover:text-wka-red hover:bg-gray-50 rounded-lg transition-colors"
+                        >
+                          {item.name}
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              mobileDropdown === item.name && "rotate-180"
+                            )}
+                          />
+                        </button>
+                        {mobileDropdown === item.name && (
+                          <div className="ml-3 mt-1 space-y-1 border-l-2 border-gray-100 pl-3">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.name}
+                                href={child.href}
+                                className="block px-3 py-2 text-sm text-gray-600 hover:text-wka-red transition-colors"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block px-3 py-2.5 text-base font-medium text-gray-700 hover:text-wka-red hover:bg-gray-50 rounded-lg transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Secondary Links */}
+              <div className="mt-3 pt-3 border-t border-gray-100 px-2">
+                <div className="flex gap-2">
+                  {secondaryNav.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="flex-1 text-center px-3 py-2 text-sm text-gray-500 hover:text-wka-red hover:bg-gray-50 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <Link
+                    href="/admin/login"
+                    className="flex-1 text-center px-3 py-2 text-sm text-gray-500 hover:text-wka-red hover:bg-gray-50 rounded-lg transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

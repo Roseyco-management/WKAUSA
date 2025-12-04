@@ -140,3 +140,8 @@
     @apply bg-gradient-to-r from-wka-red to-red-500 bg-clip-text text-transparent;
   }
 }
+
+/* Force consistent image orientation across all browsers/devices */
+img {
+  image-orientation: from-image;
+}
