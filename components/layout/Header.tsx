@@ -6,7 +6,13 @@ import { useState } from "react";
 import { Menu, X, ChevronDown, User, Shield, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const navigation = [
+interface NavItem {
+  name: string;
+  href: string;
+  children?: { name: string; href: string }[];
+}
+
+const navigation: NavItem[] = [
   { name: "Home", href: "/" },
   {
     name: "About",
@@ -34,7 +40,7 @@ const navigation = [
 ];
 
 // Secondary links shown only on desktop or in mobile "More" section
-const secondaryNav = [
+const secondaryNav: NavItem[] = [
   { name: "Suspensions", href: "/suspensions" },
   { name: "Links", href: "/links" },
 ];
